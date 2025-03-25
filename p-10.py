@@ -10,10 +10,14 @@ def main(args):
     splitter = ";"
     if len(args) > 1 and args[1] == "1":
         splitter = ":"
-    PATHVars = []
     value = os.getenv('PATH')
     directories = value.split(splitter)
     for value in directories:
-        os.listdir(value)
+        try:
+            for i in os.listdir(value):
+                if args[0] in i:
+                    print(os.path.join(value, i))
+        except FileNotFoundError:
+            print("Could not find directory '%s' in path" % value)
 
 main(sys.argv[1:])
