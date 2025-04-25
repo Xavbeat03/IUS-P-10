@@ -4,8 +4,10 @@ from os.path import split
 
 
 def main(args):
-    if len(args) < 1:
+    if len(args) < 1 or (len(args) > 1 and args[1] != "1") or (len(args) > 2):
+        print("Incorrect number of arguments: ", len(args))
         print("Usage: p-10.py <search>")
+        print("Usage (for linux): p-10.py <search> 1")
         sys.exit(1)
     splitter = ";"
     if len(args) > 1 and args[1] == "1":
